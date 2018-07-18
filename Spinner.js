@@ -3,32 +3,55 @@ import {
   asset,
   Image,
   StyleSheet,
+  View
 } from 'react-360';
 
 class Spinner extends React.Component {
 
 	constructor (props){
 		super(props);
+
+    let images = [];
+    for(let i=1; i<=12; i++){
+      const source = asset(`${i}.png`)
+      images.push(<Image source={source} style={styles.spinner} />)
+    }
+
+    this.state = {
+      images
+    }
 	}
 
 	render() {
+    const {images} = this.state;
     const {percentage} = this.props;
-    const from = 1;
-    const to = 12;
-    const index = Math.round(to/100*percentage) + from;
-    const source = asset(`${index}.png`)
-
+    const index = Math.round((images.length-1)/100*percentage);
+    
 		return (
-			<Image source={source} style={styles.spinner} />
+      <View>
+			 {
+        images.map( (image, key) => 
+          <View style={{top: key === index ? 0 : -9999999}}>
+            {image}
+          </View>
+        )
+       }
+      </View>
 		);
 	}
 
 }
 
+const SIZE = 300;
+
 const styles = StyleSheet.create({
   spinner: {
-    width: 300,
-    height: 300,
+    position: 'absolute',
+    backgroundColor: 'white',
+    top: -SIZE/2,
+    left: -SIZE/2,
+    width: SIZE,
+    height: SIZE,
     alignItems: 'center',
     justifyContent: 'center',
   },

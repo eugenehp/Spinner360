@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 1)',
     justifyContent: 'center',
     alignItems: 'center',
+    display: 'flex',
   },
 });
 
