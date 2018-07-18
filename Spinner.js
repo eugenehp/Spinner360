@@ -12,7 +12,7 @@ class Spinner extends React.Component {
 		super(props);
 
     let images = [];
-    for(let i=1; i<=12; i++){
+    for(let i=1; i<=13; i++){
       const source = asset(`${i}.png`)
       images.push(<Image source={source} style={styles.spinner} />)
     }
